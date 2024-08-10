@@ -43,7 +43,12 @@ Run the following command to generate a coverage report:
 ./cmake_build.sh build coverage
 ```
 
-This will create a coverage report in `build/coverage/`, and will open it in a web browser. The report will show how much of your code is covered by the tests.
+This will create a coverage report in `build/coverage/`, The report will show how much of your code is covered by the tests.
+if you want to open the report, run:
+
+``` sh
+./cmake_build.sh show_report
+```
 
 #### 6. **Clean Up**
 

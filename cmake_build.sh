@@ -17,6 +17,7 @@ usage() {
     echo "    all[default]  - Build the project"
     echo "    tests         - Run Unit tests"
     echo "    coverage      - Collect coverage infos and generate report"
+    echo "    show_report   - Open coverage report in html"
     echo ""
     exit 1
 }
@@ -71,6 +72,10 @@ case $1 in
         clean
         configure
         build $2
+        ;;
+    show_report)
+        echo "Opening coverage report..."
+        xdg-open ${BUILD_DIR}/coverage_report/index.html
         ;;
     *)
         usage

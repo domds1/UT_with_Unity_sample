@@ -20,11 +20,10 @@ add_custom_target(tests
 
 # Capture coverage data using lcov
 add_custom_target(coverage
+    COMMENT "Capturing code coverage data with lcov and generating report..."
     COMMAND lcov --directory . --capture --output-file coverage.info
     COMMAND lcov --remove coverage.info '*/unity/*' --output-file coverage_filtered.info
     COMMAND genhtml coverage_filtered.info --output-directory coverage_report
     DEPENDS tests
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Capturing code coverage data with lcov and generating report..."
-    COMMAND xdg-open coverage_report/index.html
 )
