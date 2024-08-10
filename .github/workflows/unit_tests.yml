@@ -1,0 +1,23 @@
+name: Unit tests
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: preconditions
+      run: sudo apt-get install -y cmake gcc lcov
+    - name: configure
+      run: ./cmake_build.sh configure
+    - name: build
+      run: ./cmake_build.sh build tests
+    - name: coverage
+      run: ./cmake_build.sh build coverage
