@@ -1,5 +1,7 @@
 # Unit testing with Unity
 
+[![Unit tests](https://github.com/domds1/UT_with_Unity_sample/actions/workflows/unit_tests.yml/badge.svg?branch=feature%2Fcmake-instead-of-make)](https://github.com/domds1/UT_with_Unity_sample/actions/workflows/unit_tests.yml)
+
 This sample project uses [Unity](https://www.throwtheswitch.org/unity) framework to run unit tests on C code.
 
 
