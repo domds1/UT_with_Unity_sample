@@ -13,7 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: preconditions
+
+
+    - name: Cache lcov
+      id: cache-lcov
+      uses: actions/cache@v3
+      with:
+        path: /usr/bin/lcov
+        key: ${{ runner.os }}-lcov
+
+    - name: Dependencies
       run: sudo apt-get install -y cmake gcc lcov
     - name: configure
       run: ./cmake_build.sh configure
@@ -21,3 +30,11 @@ jobs:
       run: ./cmake_build.sh build tests
     - name: coverage
       run: ./cmake_build.sh build coverage
+
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Test artifacts upload
+        path: |
+          build/test/
+          build/coverage_report/
