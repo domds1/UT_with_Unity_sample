@@ -25,7 +25,7 @@ jobs:
     - name: Dependencies
       run: sudo apt-get install -y cmake gcc lcov
     - name: configure
-      run: ./cmake_build.sh configure
+      run: ./cmake_build.sh configure makefiles
     - name: build
       run: ./cmake_build.sh build tests
     - name: coverage
