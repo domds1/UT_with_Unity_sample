@@ -29,7 +29,7 @@ configure(){
 	if [ -z "$1" ]; then
 		cmake -S . -G "MinGW Makefiles" -B ${BUILD_DIR}
 	else
-		cmake -S . -G "Makefiles" -B ${BUILD_DIR}
+		cmake -S . -G "Unix Makefiles" -B ${BUILD_DIR}
 	fi
 }
 
