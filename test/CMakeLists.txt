@@ -14,6 +14,8 @@ target_link_libraries(run_tests unity my_module gcov)
 # Add a custom command to run tests
 add_custom_target(tests
     COMMAND run_tests
+	COMMENT "Capturing code coverage data with gcovr and generating report..."
+ 	COMMAND gcovr -r .. -e ../test/unity/ --html --html-details -o test/my-module-coverage.html
     DEPENDS run_tests
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )

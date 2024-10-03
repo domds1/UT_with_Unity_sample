@@ -3,5 +3,7 @@
 
 int add(int a, int b);
 
+//#define FAILED_EXAMPLE
+
 #endif // MY_MODULE_H
 

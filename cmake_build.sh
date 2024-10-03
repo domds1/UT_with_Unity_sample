@@ -17,7 +17,6 @@ usage() {
     echo "    all[default]  - Build the project"
     echo "    tests         - Run Unit tests"
     echo "    coverage      - Collect coverage infos and generate report"
-    echo "    show_report   - Open coverage report in html"
     echo ""
     exit 1
 }
@@ -27,7 +26,11 @@ configure(){
         echo "Configuring build in ${BUILD_DIR}..."
         mkdir -p ${BUILD_DIR}
     fi
-    cmake -S . -B ${BUILD_DIR}
+	if [ -z "$1" ]; then
+		cmake -S . -G "MinGW Makefiles" -B ${BUILD_DIR}
+	else
+		cmake -S . -G "Unix Makefiles" -B ${BUILD_DIR}
+	fi
 }
 
 build(){
@@ -59,7 +62,7 @@ fi
 # Handle commands
 case $1 in
     configure)
-        configure
+        configure $2
         ;;
     build)
         build $2
@@ -67,15 +70,11 @@ case $1 in
     clean)
         clean
         ;;
-    rebuild)
-        echo "Rebuilding target '$2'..."
+    all)
+        echo "Building target '$2' from scratch..."
         clean
         configure
-        build $2
-        ;;
-    show_report)
-        echo "Opening coverage report..."
-        xdg-open ${BUILD_DIR}/coverage_report/index.html
+        build tests
         ;;
     *)
         usage
